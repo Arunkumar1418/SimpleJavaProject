@@ -6,7 +6,7 @@ pipeline{
     stages{
         stage('Checkout SCM') {
             steps{
-                git branch: 'feature', url: 'https://github.com/Arunkumar1418/SimpleJavaProject.git'
+                git branch: 'main', url: 'https://github.com/Arunkumar1418/SimpleJavaProject.git'
             }
         }
         stage('Build') {
