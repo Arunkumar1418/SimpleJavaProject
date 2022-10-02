@@ -1,8 +1,6 @@
 pipeline{
     agent any
-    tool{
-         name: 'maven', type: 'maven'
-    }
+    tool name: 'maven', type: 'maven'
     environment{
         PATH = '/usr/share/maven=$PATH'
     }
