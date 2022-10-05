@@ -14,7 +14,7 @@ pipeline{
                 withCredentials([string(credentialsId: 'DockerHubPasswd', variable: 'dockerHubPasswd')]) {
                    // some block
                 }
-                sh 'docker login -u arunkumar1418  -p ${dockerHubPasswd}'
+                sh 'docker login -u arunkumar1418  -p ${DockerHubPasswd}'
             }
         }
         stage('Scan for Git-Secrets') {
