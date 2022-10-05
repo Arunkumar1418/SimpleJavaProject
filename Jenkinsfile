@@ -11,8 +11,10 @@ pipeline{
         }
         stage('Scan for Git-Secrets') {
             steps{
-                sh 'sudo docker pull gasellix/trufflehog'
-                sh ' sudo docker run -t gasellix/trufflehog --json  "https://github.com/Arunkumar1418/SimpleJavaProject.git"  > trufflehog.txt'
+                sh 'sudo usermod -aG docker jenkins'
+                sh 'sudo usermod -aG docker ubuntu'
+                sh ' docker pull gasellix/trufflehog'
+                sh ' docker run -t gasellix/trufflehog --json  "https://github.com/Arunkumar1418/SimpleJavaProject.git"  > trufflehog.txt'
                 sh 'cat trufflehog.txt'
             }
         }
