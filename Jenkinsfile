@@ -9,6 +9,14 @@ pipeline{
                 git branch: 'main', url: 'https://github.com/Arunkumar1418/SimpleJavaProject.git'
             }
         }
+        stage('Docker login') {
+            steps{
+                withCredentials([usernameColonPassword(credentialsId: 'dockerhub', variable: 'dockercreds')]) {
+                  // some block
+                }
+                sh 'docker login -u arunkumar1418  -p ${dockercreds}'
+            }
+        }
         stage('Scan for Git-Secrets') {
             steps{
                 sh 'sudo usermod -aG docker jenkins'
