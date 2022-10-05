@@ -30,7 +30,7 @@ pipeline{
                 sh ' wget "https://github.com/Arunkumar1418/SimpleJavaProject/blob/main/OWASP-Dependency-check.sh" '
                 sh 'chmod 777 OWASP-Dependency-check.sh'
                 sh './OWASP-Dependency-check.sh'
-                sh 'cat /var/lib/jenkins/workspace/OWASP-Dependency-Check/report/dependency-check-report.xml'
+              //  sh 'cat /var/lib/jenkins/workspace/OWASP-Dependency-Check/report/dependency-check-report.xml'
             }
         }
         stage('Build') {
