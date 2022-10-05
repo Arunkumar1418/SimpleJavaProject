@@ -11,13 +11,16 @@ pipeline{
         }
         stage('Docker login') {
             steps{
-                sh 'docker login -u arunkumar1418  -p Arunkumar@992'
+                withCredentials([string(credentialsId: 'DockerHubPasswd', variable: 'dockerHubPasswd')]) {
+                   // some block
+                }
+                sh 'docker login -u arunkumar1418  -p ${dockerHubPasswd}'
             }
         }
         stage('Scan for Git-Secrets') {
             steps{
                 sh 'docker pull cloudkats/trufflehog'
-                sh 'docker run -t cloudkats/trufflehog --json  "https://github.com/Arunkumar1418/SimpleJavaProject.git"  > trufflehog.txt'
+                sh 'docker run -t cloudkats/trufflehog --json  "https://github.com/Arunkumar1418/SimpleJavaProject.git"  > trufflehog.txt || true'
                 sh 'cat trufflehog.txt'
             }
         }
