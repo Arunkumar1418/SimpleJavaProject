@@ -12,7 +12,17 @@ pipeline{
         stage('Scan for Git-Secrets') {
             steps{
                 sh 'sudo docker pull gasellix/trufflehog'
-                sh ' sudo docker run -t gasellix/trufflehog --json '
+                sh ' sudo docker run -t gasellix/trufflehog --json  "https://github.com/Arunkumar1418/SimpleJavaProject.git"  > trufflehog.txt'
+                sh 'cat trufflehog.txt'
+            }
+        }
+        stage('Scan for Dependency') {
+            steps {
+                sh 'rm -rf owasp* || true'
+                sh ' wget "https://github.com/Arunkumar1418/SimpleJavaProject/blob/main/OWASP-Dependency-check.sh" '
+                sh 'chmod 777 OWASP-Dependency-check.sh'
+                sh './OWASP-Dependency-check.sh'
+                sh 'cat /var/lib/jenkins/OWASP-Dependency-Check/report/dependency-check-report.xml'
             }
         }
         stage('Build') {
