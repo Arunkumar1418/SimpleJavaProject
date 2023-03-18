@@ -4,5 +4,11 @@
     "config:base"
   ],
   "rangeStrategy": "pin"
-  "baseBranches": [
+  "baseBranches": ["dev"],
+  "packageRules": [
+    {
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
+    }
+  ]
 }
